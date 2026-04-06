@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farewell Party 2026 | Mechanical Engineering</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            background-color: #050505; 
+        }
+
+        /* Mechanical Machinery Background */
+        .party-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            /* Uses a dark overlay over a realistic image of mechanical gears/steel */
+            background: linear-gradient(rgba(10, 10, 15, 0.75), rgba(2, 2, 5, 0.95)), 
+                        url('https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+            filter: contrast(1.2) grayscale(0.2);
+        }
+
+        /* Spark Particles Container */
+        .particles {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        /* Main Content Styling */
+        .content {
+            position: relative;
+            z-index: 4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            padding: 0 20px;
+            color: #ffffff;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out; 
+        }
+
+        .content.visible {
+            opacity: 1;
+        }
+
+        /* Ultra-Realistic Thick Glass Panels to stand out against machinery */
+        .college-header, .sub-text, .event-details {
+            background: linear-gradient(135deg, rgba(30, 30, 35, 0.5) 0%, rgba(10, 10, 15, 0.7) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+            border-right: 1px solid rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .college-header {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px 30px;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .college-header::after {
+            content: ''; position: absolute; bottom: 0; left: 10%; width: 80%; height: 2px;
+            background: #ffaa00; box-shadow: 0 0 15px #ffaa00;
+        }
+
+        .college-name {
+            font-size: 1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #e5e7eb;
+            margin: 0;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+        }
+
+        /* Dynamic Metal Text */
+        .neon-text {
+            font-size: 4.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            margin: 0;
+            background: linear-gradient(110deg, #888 10%, #fff 30%, #444 50%, #fff 70%, #888 90%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: metalShine 5s linear infinite;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.8);
+            position: relative;
+        }
+
+        @keyframes metalShine {
+            to { background-position: 200% center; }
+        }
+
+        /* Ambient heat glow behind text */
+        .neon-text::after {
+            content: 'FAREWELL PARTY';
+            position: absolute; left: 0; top: 0; z-index: -1;
+            color: transparent;
+            text-shadow: 0 0 40px rgba(255, 80, 0, 0.4), 0 0 80px rgba(255, 50, 0, 0.2);
+        }
+
+        .sub-text {
+            font-size: 1.3rem;
+            margin-top: 15px;
+            letter-spacing: 2px;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+        }
+
+        .highlight {
+            color: #ffaa00;
+            font-weight: bold;
+            text-shadow: 0 0 15px rgba(255, 170, 0, 0.6);
+        }
+
+        /* Event Details Box */
+        .event-details {
+            margin-top: 30px;
+            padding: 25px 40px;
+            border-radius: 12px;
+            position: relative;
+            text-align: left;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            overflow: hidden;
+        }
+        
+        .event-details::before {
+            content: ''; position: absolute; left: 0; top: 10%; width: 4px; height: 80%;
+            background: #00e5ff; box-shadow: 0 0 15px #00e5ff; border-radius: 4px;
+        }
+        .event-details::after {
+            content: ''; position: absolute; right: 0; top: 10%; width: 4px; height: 80%;
+            background: #00e5ff; box-shadow: 0 0 15px #00e5ff; border-radius: 4px;
+        }
+
+        .event-details p {
+            margin: 10px 0;
+            color: #f3f4f6;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.9);
+        }
+
+        .event-details .icon {
+            margin-right: 15px;
+            font-size: 1.4rem;
+            vertical-align: middle;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.8));
+        }
+
+        .event-details strong {
+            color: #ffaa00;
+            letter-spacing: 1.5px;
+        }
+
+        /* Entry Button Area */
+        #entry-screen {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #020202;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            transition: opacity 1s ease-out;
+        }
+
+        /* Heavy Machinery Power Button */
+        .start-btn {
+            background: linear-gradient(180deg, #2a2a2a 0%, #111 100%);
+            color: #ffaa00;
+            border: 2px solid #333;
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-family: inherit;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s ease; 
+            box-shadow: 
+                inset 0 2px 0 rgba(255,255,255,0.15), 
+                inset 0 -2px 0 rgba(0,0,0,0.8), 
+                0 10px 20px rgba(0,0,0,0.9), 
+                0 0 20px rgba(255, 170, 0, 0.2); 
+            text-shadow: 0 0 10px rgba(255, 170, 0, 0.5);
+        }
+
+        .start-btn:hover {
+            background: linear-gradient(180deg, #333 0%, #151515 100%);
+            color: #ffcf70;
+            border-color: #ffaa00;
+            box-shadow: 
+                inset 0 2px 0 rgba(255,255,255,0.2), 
+                inset 0 -2px 0 rgba(0,0,0,0.8), 
+                0 15px 30px rgba(0,0,0,0.9), 
+                0 0 40px rgba(255, 170, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .tap-instruction {
+            color: #666;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.9; text-shadow: 0 0 8px rgba(255,255,255,0.2); }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="engine-sfx" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/212/212-preview.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="bg-music" loop preload="auto">
+        <source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="entry-screen">
+        <button class="start-btn" onclick="startParty()">Ignite the Engines</button>
+        <p class="tap-instruction">( Tap Me To Start )</p>
+    </div>
+
+    <div class="party-bg"></div>
+    <div class="particles" id="particles"></div>
+
+    <div class="content" id="main-content">
+        
+        <div class="college-header">
+            <h2 class="college-name">SV College of Engineering, Tirupati</h2>
+        </div>
+
+        <h1 class="neon-text">Farewell Party</h1>
+        <p class="sub-text">Mechanical Engineering <span class="highlight">Batch (2022–2026)</span></p>
+
+        <div class="event-details">
+            <p><span class="icon">📅</span> <strong>DATE:</strong> Wednesday, April 8, 2026</p>
+            <p><span class="icon">🕒</span> <strong>TIME:</strong> 6:00 PM</p>
+            <p><span class="icon">📍</span> <strong>VENUE:</strong> Subbayya Gari Hotel,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tiruchanoor Road, Tirupati</p>
+        </div>
+
+    </div>
+
+    <script>
+        function startParty() {
+            const engineSound = document.getElementById('engine-sfx');
+            const music = document.getElementById('bg-music');
+            
+            engineSound.volume = 0.9;
+            music.volume = 0.6; 
+            
+            // Play engine sound immediately
+            engineSound.play().catch(e => console.log("Audio play failed.", e));
+
+            // Hide the button screen
+            const entryScreen = document.getElementById('entry-screen');
+            entryScreen.style.opacity = '0';
+            
+            setTimeout(() => {
+                entryScreen.style.display = 'none';
+                document.getElementById('main-content').classList.add('visible');
+                
+                // Start sparks immediately as the main screen appears
+                createRealisticSparks(); 
+                
+                // Start music slightly after
+                setTimeout(() => {
+                    music.play().catch(e => console.log("Music play failed.", e));
+                }, 1000);
+                
+            }, 800);
+        }
+
+        // Intense Grinding/Welding Sparks Generator
+        function createRealisticSparks() {
+            const container = document.getElementById('particles');
+            
+            // Spawn sparks very frequently to make it look active
+            setInterval(() => {
+                let spark = document.createElement('div');
+                
+                let size = Math.random() * 3 + 1;
+                spark.style.width = size + 'px';
+                spark.style.height = size * (Math.random() * 4 + 2) + 'px';
+                spark.style.position = 'absolute';
+                spark.style.bottom = '-10px';
+                spark.style.left = Math.random() * 100 + 'vw';
+                
+                // Bright welding colors
+                let colors = ['#ffffff', '#ffebba', '#ff9900', '#ff3300'];
+                let color = colors[Math.floor(Math.random() * colors.length)];
+                
+                spark.style.backgroundColor = color;
+                spark.style.borderRadius = '50px';
+                spark.style.boxShadow = `0 0 ${size*4}px ${color}, 0 0 ${size*8}px #ff5500`;
+                
+                container.appendChild(spark);
+
+                // Movement calculation
+                let startX = 0;
+                let startY = 0;
+                let driftX = (Math.random() - 0.5) * 400; // Wide spray
+                let targetY = - (Math.random() * 80 + 30); // How high they shoot up
+                let duration = Math.random() * 1000 + 800; // Fast movement
+
+                // Animate the spark
+                let animation = spark.animate([
+                    { transform: `translate(${startX}px, ${startY}vh) scale(1)`, opacity: 1, offset: 0 },
+                    { transform: `translate(${driftX * 0.7}px, ${targetY * 0.7}vh) scale(0.8)`, opacity: 0.9, offset: 0.5 },
+                    { transform: `translate(${driftX}px, ${targetY}vh) scale(0)`, opacity: 0, offset: 1 }
+                ], {
+                    duration: duration,
+                    easing: 'cubic-bezier(0.0, 0.5, 0.5, 1)' // Fast blast upwards, slowing near top
+                });
+
+                animation.onfinish = () => spark.remove();
+            }, 30); // Spawns a spark every 30 milliseconds!
+        }
+    </script>
+
+</body>
+</html>
